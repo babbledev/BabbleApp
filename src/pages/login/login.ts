@@ -36,12 +36,10 @@ export class LoginPage {
             this.authService.login({ device_id: deviceId }).subscribe(err => {
                 if (err) {
                     console.log('error logging in: ' + err);
-                } else {
-                    this.nav.setRoot(TabsPage);
                 }
             });
         })
     }
 
-    
+
 }    

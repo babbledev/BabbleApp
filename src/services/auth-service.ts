@@ -1,3 +1,6 @@
+import { TabsPage } from './../pages/tabs/tabs';
+import { RegisterPage } from './../pages/register/register';
+import { NavController } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -19,6 +22,10 @@ export class AuthServiceProvider {
 
     currentUser: User;
     
+    constructor(public http: Http, public nav: NavController) {
+        console.log('Hello AuthServiceProvider Provider');
+
+    }
 
     public login(deviceId) {
         return Observable.create(observer => {
@@ -38,6 +45,7 @@ export class AuthServiceProvider {
                         console.log("token: " + data.token);
                         this.currentUser = new User(data.email, data.token);
 
+                        this.nav.setRoot(TabsPage);
                         observer.next(false);
                         observer.complete();
                     }
@@ -45,7 +53,12 @@ export class AuthServiceProvider {
                     let data = err.json();
 
                     if (data.noAccount) {
-                        this.register(deviceId);
+                        this.nav.setRoot(RegisterPage);
+                        observer.next(false);
+                        observer.complete();
+                    } else {
+                        observer.next(data.error);
+                        observer.complete();
                     }
                 }
             );
@@ -102,10 +115,6 @@ export class AuthServiceProvider {
             observer.next(true);
             observer.complete();
         });
-    }
-
-    constructor(public http: Http) {
-        console.log('Hello AuthServiceProvider Provider');
     }
 
 }
