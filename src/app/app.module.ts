@@ -1,7 +1,11 @@
+import { AuthServiceProvider } from './../services/auth-service';
+import { Device } from '@ionic-native/device';
+import { LoginPage } from './../pages/login/login';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { HttpModule } from '@angular/http';
 
 import { ProfilePage } from '../pages/profile/profile';
 import { NotificationsPage } from '../pages/notifications/notifications';
@@ -17,10 +21,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     NotificationsPage,
     ProfilePage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
+    HttpModule, 
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -29,10 +35,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     NotificationsPage,
     ProfilePage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
+    Device, 
+    AuthServiceProvider,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
