@@ -29,4 +29,8 @@ export class HomePage {
         newPostModal.present();
     }
 
+    updateFeed() {
+        this.postService.updateFeed();
+    }
+
 }
