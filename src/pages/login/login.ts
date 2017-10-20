@@ -26,6 +26,10 @@ export class LoginPage {
     }
 
     ionViewDidLoad() {
+        this.login();
+    }
+
+    login() {
         this.platform.ready().then(() => {
             let deviceId = this.device.uuid;
             if (!deviceId) {
@@ -33,9 +37,16 @@ export class LoginPage {
             }
 
             console.log('Device ID: ' + deviceId);
-            this.authService.login({ device_id: deviceId }).subscribe(err => {
+            this.authService.login(deviceId).subscribe(err => {
                 if (err) {
                     console.log('error logging in: ' + err);
+
+                    //retry in 5 seconds
+                    setTimeout(() => {
+                        this.login()
+                    }, 5000);
+                } else {
+                    this.navCtrl.setRoot(TabsPage);
                 }
             });
         })

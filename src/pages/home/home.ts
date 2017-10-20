@@ -1,8 +1,9 @@
+import { NewPostComponent } from './../../components/new-post/new-post';
 import { Http } from '@angular/http';
 import { LocationServiceProvider } from './../../services/location-service';
 import { AuthServiceProvider } from './../../services/auth-service';
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, Inject } from '@angular/core';
+import { ModalController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -12,8 +13,8 @@ export class HomePage {
     posts: any = [];
     loadingPosts: boolean = false;
 
-    constructor(public navCtrl: NavController, public authService: AuthServiceProvider,
-        public locationService: LocationServiceProvider, public http: Http) {
+    constructor(private authService: AuthServiceProvider, private locationService: LocationServiceProvider,
+         private http: Http, private modalController: ModalController) {
 
     }
 
@@ -41,6 +42,11 @@ export class HomePage {
                 console.log(JSON.stringify(data));
             }
         );
+    }
+
+    public presentNewPostModal() {
+        let newPostModal = this.modalController.create(NewPostComponent);
+        newPostModal.present();
     }
 
 }

@@ -1,3 +1,4 @@
+import { NewPostComponent } from './../components/new-post/new-post';
 import { LocationServiceProvider } from './../services/location-service';
 import { AuthServiceProvider } from './../services/auth-service';
 import { Device } from '@ionic-native/device';
@@ -24,7 +25,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ProfilePage,
     HomePage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    NewPostComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ProfilePage,
     HomePage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    NewPostComponent
   ],
   providers: [
     StatusBar,
