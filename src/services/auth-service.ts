@@ -39,7 +39,7 @@ export class AuthServiceProvider {
                         observer.next(data.error);
                         observer.complete();
                     } else {
-                        console.log("token: " + data.token);
+                        console.log("login token: " + data.token);
                         this.currentUser = new User(data.email, data.token);
 
                         // navController.setRoot(TabsPage);
@@ -51,10 +51,10 @@ export class AuthServiceProvider {
 
                     if (data.noAccount) {
                         // navController.setRoot(RegisterPage);
-                        observer.next(false);
+                        observer.next({noAccount: true});
                         observer.complete();
                     } else {
-                        observer.next(data.error);
+                        observer.next({error: true});
                         observer.complete();
                     }
                 }
@@ -81,7 +81,7 @@ export class AuthServiceProvider {
                 .subscribe(response => {
                     let data = response.json();
 
-                    console.log("received token: " + data.token);
+                    console.log("register token: " + JSON.stringify(data));
                     this.currentUser = new User(data._id, data.token);
 
                     observer.next(false);
@@ -93,6 +93,8 @@ export class AuthServiceProvider {
                     console.log('error in registration.')
                     console.log(data);
 
+                    observer.next(data);
+                    observer.complete();
                 }
             );
         });

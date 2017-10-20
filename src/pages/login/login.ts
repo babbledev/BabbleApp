@@ -1,3 +1,4 @@
+import { RegisterPage } from './../register/register';
 import { TabsPage } from './../tabs/tabs';
 import { AuthServiceProvider } from './../../services/auth-service';
 import { HttpModule } from '@angular/http';
@@ -39,12 +40,16 @@ export class LoginPage {
             console.log('Device ID: ' + deviceId);
             this.authService.login(deviceId).subscribe(err => {
                 if (err) {
-                    console.log('error logging in: ' + err);
+                    if (err.noAccount) {
+                        this.navCtrl.setRoot(RegisterPage);
+                    } else {
+                        console.log('error logging in: ' + JSON.stringify(err));
 
-                    //retry in 5 seconds
-                    setTimeout(() => {
-                        this.login()
-                    }, 5000);
+                        //retry in 5 seconds
+                        setTimeout(() => {
+                            this.login()
+                        }, 5000);
+                    }
                 } else {
                     this.navCtrl.setRoot(TabsPage);
                 }

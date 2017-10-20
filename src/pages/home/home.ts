@@ -27,6 +27,7 @@ export class HomePage {
 
         let query = '?lat=' + this.locationService.latitude + '&lon=' + this.locationService.latitude;
 
+        console.log('headers: ' + JSON.stringify(this.authService.createHeaders()));
         this.http.get(AuthServiceProvider.API_URL + '/posts' + query,
             this.authService.createHeaders())
             .subscribe(response => {

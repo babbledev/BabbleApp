@@ -35,7 +35,7 @@ export class RegisterPage {
           }
 
           console.log('Device ID: ' + deviceId);
-          this.authService.register({ device_id: deviceId }).subscribe(err => {
+          this.authService.register(deviceId).subscribe(err => {
               if (err) {
                   console.log('error registering: ' + err);
               }
