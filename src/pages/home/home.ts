@@ -33,8 +33,10 @@ export class HomePage {
         return this.postService.posts;
     }
 
-    updateFeed() {
-        this.postService.updateFeed();
+    updateFeed(refresher) {
+        this.postService.updateFeed().subscribe(err => {
+            refresher.complete();
+        })
     }
 
 }

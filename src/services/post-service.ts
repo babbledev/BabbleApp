@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Rx';
 import { Http } from '@angular/http';
 import { AuthServiceProvider } from './auth-service';
 import { LocationServiceProvider } from './location-service';
@@ -15,32 +16,42 @@ export class PostServiceProvider {
     }
 
     public updateFeed() {
-        this.loadingPosts = true;
+        return Observable.create(observer => {
+            this.loadingPosts = true;
 
-        if (!this.locationService.longitude || !this.locationService.latitude) {
-            console.log('Location not found. Cancelling feed update.');
-            this.loadingPosts = false;
-            return;
-        }
-
-        let query = '?lon=' + this.locationService.longitude + '&lat=' + this.locationService.latitude;
-
-        console.log('headers: ' + JSON.stringify(this.authService.createHeaders()));
-        this.http.get(AuthServiceProvider.API_URL + '/posts' + query,
-            this.authService.createHeaders())
-            .subscribe(response => {
+            if (!this.locationService.longitude || !this.locationService.latitude) {
+                console.log('Location not found. Cancelling feed update.');
                 this.loadingPosts = false;
-                let data = response.json();
-
-                console.log("received feed update: " + JSON.stringify(data));
-                this.posts = data.posts;
-            }, err => {
-                this.loadingPosts = false;
-                let data = err.json();
-                console.log('error updating posts.')
-                console.log(JSON.stringify(data));
+                observer.next(true);
+                observer.complete();
+                return;
             }
-        );
+
+            let query = '?lon=' + this.locationService.longitude + '&lat=' + this.locationService.latitude;
+
+            console.log('headers: ' + JSON.stringify(this.authService.createHeaders()));
+            this.http.get(AuthServiceProvider.API_URL + '/posts' + query,
+                this.authService.createHeaders())
+                .subscribe(response => {
+                    this.loadingPosts = false;
+                    let data = response.json();
+
+                    console.log("received feed update: " + JSON.stringify(data));
+                    this.posts = data.posts;
+
+                    observer.next(false);
+                    observer.complete();
+                }, err => {
+                    this.loadingPosts = false;
+                    let data = err.json();
+                    console.log('error updating posts.')
+                    console.log(JSON.stringify(data));
+
+                    observer.next(true);
+                    observer.complete();
+                }
+            );
+        })
     }
 
 }
