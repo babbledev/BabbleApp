@@ -1,5 +1,8 @@
+import { HomePage } from './../home/home';
+import { AuthServiceProvider } from './../../services/auth-service';
+import { Device } from '@ionic-native/device';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 
 /**
  * Generated class for the RegisterPage page.
@@ -15,11 +18,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RegisterPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public navCtrl: NavController, public navParams: NavParams,
+        public platform: Platform, public device: Device, public authService: AuthServiceProvider,
+        public nav: NavController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
   }
 
+  register() {
+      this.platform.ready().then(() => {
+          let deviceId = this.device.uuid;
+          if (!deviceId) {
+              deviceId = "test_browser";
+          }
+
+          console.log('Device ID: ' + deviceId);
+          this.authService.register({ device_id: deviceId }).subscribe(err => {
+              if (err) {
+                  console.log('error registering: ' + err);
+              }
+
+              this.nav.setRoot(HomePage);
+          });
+      })
+  }  
 }

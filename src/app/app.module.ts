@@ -1,3 +1,4 @@
+import { LocationServiceProvider } from './../services/location-service';
 import { AuthServiceProvider } from './../services/auth-service';
 import { Device } from '@ionic-native/device';
 import { LoginPage } from './../pages/login/login';
@@ -6,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { ProfilePage } from '../pages/profile/profile';
 import { NotificationsPage } from '../pages/notifications/notifications';
@@ -42,7 +44,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     Device, 
     AuthServiceProvider,
+    LocationServiceProvider,
     SplashScreen,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
