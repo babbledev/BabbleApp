@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class LocationServiceProvider {    
-    latitude: Number;
-    longitude: Number;
+    latitude: Number = 0;
+    longitude: Number = 0;
 
     constructor(public geolocation: Geolocation) {
         this.watchLocation();
@@ -13,7 +13,8 @@ export class LocationServiceProvider {
     public watchLocation() {
         let watch = this.geolocation.watchPosition();
         watch.subscribe((data) => {
-            if (data.coords) {
+            if (data.coords && data.coords.latitude) {
+                console.log('coords: ', JSON.stringify(data));
                 this.latitude = data.coords.latitude;
                 this.longitude = data.coords.longitude;        
             } else {

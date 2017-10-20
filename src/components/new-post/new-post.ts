@@ -25,11 +25,11 @@ export class NewPostComponent {
     }
 
     publish() {
-        this.http.post(AuthServiceProvider.API_URL + '/users/login',
+        this.http.post(AuthServiceProvider.API_URL + '/post',
             {
                 content: this.postContent,
-                latitude: this.locationService.latitude,
-                longitude: this.locationService.longitude
+                longitude: this.locationService.longitude,
+                latitude: this.locationService.latitude
             },
             this.authService.createHeaders())
             .subscribe(response => {

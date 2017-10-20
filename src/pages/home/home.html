@@ -9,17 +9,16 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
     <div *ngIf="loadingPosts">
         <ion-spinner name="dots"></ion-spinner>
     </div>
 
     <button ion-button (click)="updateFeed()">Update</button>
 
-    <div *ngFor="let post of posts">
-        <div class="post">
+    <ion-list>
+        <ion-item *ngFor="let post of posts" class="post">
             <p>{{post.content}}</p>
-        </div>
-        <hr>
-    </div>
+        </ion-item>
+    </ion-list>
 </ion-content>
