@@ -9,17 +9,24 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
-    posts: any;
+    posts: any = [];
     loadingPosts: boolean = false;
 
     constructor(public navCtrl: NavController, public authService: AuthServiceProvider,
-    locationService: LocationServiceProvider, public http: Http) {
+        public locationService: LocationServiceProvider, public http: Http) {
 
+    }
+
+    ionViewDidLoad() {
+        this.updateFeed();
     }
 
     public updateFeed() {
         this.loadingPosts = true;
-        this.http.get(AuthServiceProvider.API_URL + '/posts',
+
+        let query = '?lat=' + this.locationService.latitude + '&lon=' + this.locationService.latitude;
+
+        this.http.get(AuthServiceProvider.API_URL + '/posts' + query,
             this.authService.createHeaders())
             .subscribe(response => {
                 this.loadingPosts = false;
