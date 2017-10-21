@@ -1,3 +1,18 @@
+<style>
+    .content {
+        color: #000;
+        font-size: 1.8rem;
+        padding-top: 5px;
+    }
+
+    .distance {
+        color: #8e9093;
+        font-size: 1.4rem;
+        margin-top: -10px;
+    }
+
+</style>
+
 <ion-header>
     <ion-navbar>
         <ion-title>Home</ion-title>
@@ -16,7 +31,19 @@
 
     <ion-list>
         <ion-item *ngFor="let post of getPosts()" class="post">
-            <p>{{post.content}}</p>
+            <span class="distance">{{post.distanceMiles}}</span>
+            <p class="content">{{post.content}}</p>
+            <div item-end>
+                <button ion-button clear block>
+                    <ion-icon name="arrow-up"></ion-icon>
+                </button>
+                <button ion-button clear block>
+                    <ion-icon name="arrow-down"></ion-icon>
+                </button>
+            </div>
+            
+
+            <!-- <button ion-button clear item-end></button> -->
         </ion-item>
     </ion-list>
 </ion-content>
