@@ -37,6 +37,20 @@ export class PostServiceProvider {
                     let data = response.json();
 
                     console.log("received feed update: " + JSON.stringify(data));
+
+                    data.posts.forEach((post) => {
+                        if(post.distanceMiles < 1) {
+                            post.distanceMiles = "Less than a mile away."
+                        } else {
+                            if(post.distanceMiles > 5) {
+                                post.distanceMiles = Math.round(post.distanceMiles);
+                                post.distanceMiles = post.distanceMiles + " miles away."
+                            } else {
+                                post.distanceMiles = post.distanceMiles + " miles away."
+                            }
+                        }
+                    })
+
                     this.posts = data.posts;
 
                     observer.next(false);
