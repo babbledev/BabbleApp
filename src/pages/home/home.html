@@ -19,12 +19,38 @@
 
 <ion-header>
     <ion-navbar>
-        <ion-title>Home</ion-title>
-        <ion-buttons end>
-            <button ion-button icon-only (click)="presentNewPostModal()">
-                <ion-icon name="create"></ion-icon>
-            </button>
-        </ion-buttons>
+        <ion-row style="margin-bottom:10px;">
+            <ion-col col-12>
+                <ion-title>Babble</ion-title>
+            </ion-col>
+        </ion-row>
+    
+        <ion-row>
+            <ion-col col-2></ion-col>
+
+            <ion-col col-8 text-center>
+                <ion-buttons>
+                    <button ion-button outline icon-left>
+                        <ion-icon name="bulb" ></ion-icon>
+                        New</button>
+                    <button ion-button outline icon-left>
+                        <ion-icon name="flame" ></ion-icon>
+                        Hot</button>
+                    <button ion-button outline icon-left>
+                        <ion-icon name="bookmark" ></ion-icon>
+                        Bookmark</button>
+                </ion-buttons> 
+            </ion-col>             
+
+        <ion-col col-2 text-right>
+            <ion-buttons>
+                <button ion-button icon-only (click)="presentNewPostModal()">
+                    <ion-icon name="create"></ion-icon>
+                </button>
+            </ion-buttons>
+        </ion-col>
+    </ion-row>
+
     </ion-navbar>
 </ion-header>
 

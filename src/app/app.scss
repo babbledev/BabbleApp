@@ -14,3 +14,20 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+.header-ios .toolbar-ios:last-child .toolbar-background-ios {
+    border-width: 0 0 0;
+}
+
+.tabs-ios .tabbar {
+    border-top: none;  
+}
+
+.toolbar-ios {
+    min-height: 88px;
+}
+
+.toolbar-ios ion-title {
+    height: 50%;
+}
