@@ -23,3 +23,11 @@
 .tabs-ios .tabbar {
     border-top: none;  
 }
+
+.toolbar-ios {
+    min-height: 88px;
+}
+
+.toolbar-ios ion-title {
+    height: 50%;
+}
