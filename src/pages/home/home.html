@@ -15,17 +15,17 @@
 
 <ion-header>
     <ion-navbar>
-        <ion-row style="margin-bottom:10px;">
+        <ion-row style="margin-bottom:8px;">
             <ion-col col-12>
                 <ion-title>Babble</ion-title>
             </ion-col>
         </ion-row>
     
-        <ion-row>
-            <ion-col col-2></ion-col>
+        <ion-row class="navbar-second-row">
+            <ion-col col-1></ion-col>
 
-            <ion-col col-8 text-center>
-                <ion-buttons>
+            <ion-col col-10 text-center>
+                <ion-buttons class="home-buttons">
                     <button ion-button outline icon-left>
                         <ion-icon name="bulb" ></ion-icon>
                         New</button>
@@ -38,7 +38,7 @@
                 </ion-buttons> 
             </ion-col>             
 
-        <ion-col col-2 text-right>
+        <ion-col col-1 text-left>
             <ion-buttons>
                 <button ion-button icon-only (click)="presentNewPostModal()">
                     <ion-icon name="create"></ion-icon>
