@@ -16,6 +16,14 @@
 // automatically applied to the <body> element in the app.
 
 
+* {
+    font-family: -apple-system, "Helvetica Neue", Roboto, sans-serif;
+}
+
+.toolbar-title-ios {
+    font-size: 2rem;
+}
+
 .header-ios .toolbar-ios:last-child .toolbar-background-ios {
     border-width: 0 0 0;
 }
@@ -33,14 +41,30 @@
 }
 
 .home-buttons .bar-button-ios {
-    border-radius: 0px;
+
 }
 
 .home-buttons ion-buttons {
+    margin: 0 0rem;
+}
+
+.post-button {
     margin: 0px;
 }
 
-
-.navbar-second-row .col {
-    padding: 0px;
+.segment-ios .segment-button {
+    color: #f4f4f4;
 }
+
+
+.bar-button-ios[icon-only] {
+    color: #fff;
+}
+
+.toolbar-title-ios {
+    color: #fff;
+}
+
+.toolbar-background {
+    background-color: #427feb;
+  }
