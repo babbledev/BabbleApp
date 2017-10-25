@@ -68,3 +68,24 @@
 .toolbar-background {
     background-color: #427feb;
   }
+
+.new-badge {
+    background-color: #f72e2e;
+    position: absolute;
+    top: 12px;
+    right: -6px;
+    z-index: 10;
+    border-radius: 100%;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.new-button {
+    position: relative;
+    width: 42px;
+    top:1px;
+    right: 1px;
+    overflow: visible !important;
+}

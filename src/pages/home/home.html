@@ -14,7 +14,6 @@
     .post .bearings {
         text-align: center;
     }
-
 </style>
 
 <ion-header>
@@ -30,18 +29,17 @@
 
             <ion-col col-8 text-center>
                 <ion-segment class="home-buttons" [(ngModel)]="feed">
-                    <ion-segment-button value="New">
-                        <ion-icon name="bulb" ></ion-icon>
+                    <ion-segment-button class="new-button" value="New">
                         New
+                        <ion-badge class="new-badge">3</ion-badge>
                     </ion-segment-button>
 
-                    <ion-segment-button value="Hot">
-                        <ion-icon name="flame" ></ion-icon>
+                    <ion-segment-button class="new-button" value="Hot">
                         Hot
+                        <ion-badge class="new-badge">12</ion-badge>
                     </ion-segment-button>
 
-                    <ion-segment-button value="pin">
-                        <ion-icon name="attach" ></ion-icon>
+                    <ion-segment-button class="new-button" value="pin">
                         Pin
                     </ion-segment-button>
                   </ion-segment>
