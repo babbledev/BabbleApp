@@ -22,6 +22,8 @@
 
 .toolbar-title-ios {
     font-size: 2rem;
+    font-family: -apple-system, "Helvetica Neue", sans-serif;
+    font-weight: 100 !important;
 }
 
 .header-ios .toolbar-ios:last-child .toolbar-background-ios {
@@ -33,7 +35,7 @@
 }
 
 .toolbar-ios {
-    min-height: 88px;
+    min-height: 80px;
 }
 
 .toolbar-ios ion-title {
